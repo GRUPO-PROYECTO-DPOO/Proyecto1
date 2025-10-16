@@ -1,11 +1,13 @@
 package escenariosyventas;
 import java.time.LocalDateTime;
-import escenariosyventas.*;
 import usuarios.*;
 import enums.*;
 import java.util.List;
 import java.util.Objects;
+import dtos.CmdLocalidad;
 import java.util.ArrayList;
+
+
 public class Evento {
 	private String id;
 	private String nombre;
@@ -13,7 +15,7 @@ public class Evento {
 	private TipoEvento tipo;
 	private Venue venue;
 	private Organizador organizador;
-	private EstadoEvento estado;
+	private EstadoEvento estado = EstadoEvento.PROGRAMADO;
 	private List<Localidad> localidades = new ArrayList<>();
 	
 	public Evento() { }
@@ -35,7 +37,7 @@ public class Evento {
 	
 	public Localidad agregarLocalidad(CmdLocalidad cmd) {
 		if (cmd == null) throw new IllegalArgumentException("CmdLocalidad nulo");
-		Localidad l = new Localidad(cmd.getLocalidad(), this, cmd.getNombre(), cmd.getPrecioBase(), cmd.isNumerada(),
+		Localidad l = new Localidad(cmd.getIdLocalidad(), this, cmd.getNombre(), cmd.getPrecioBase(), cmd.IsNumerada(),
 				cmd.getCapacidad());
 		localidades.add(l);
 		return l;
@@ -54,6 +56,7 @@ public class Evento {
 	public String getId() {return id;}
 	public LocalDateTime getFechaHora() {return fechaHora;}
 	public List<Localidad> getLocalidades() {return localidades;}
+	
 	
 	public void setId(String id) {this.id = id;}
 	public void setNombre(String nombre) {this.nombre = nombre;}

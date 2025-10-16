@@ -7,13 +7,13 @@ import usuarios.*;
 public class SolicitudVenue {
 	private String id;
 	private Organizador propuestoPor;
-	private Venue venuePropuesto;
+	private String venuePropuesto;
 	private LocalDate fecha;
 	private EstadoSolicitud estado = EstadoSolicitud.PENDIENTE;
 	private String motivoRechazo;
 	
 	public SolicitudVenue() { }
-	public SolicitudVenue(String id, Organizador propuestoPor, Venue venuePropuesto, LocalDate fecha) {
+	public SolicitudVenue(String id, Organizador propuestoPor, String venuePropuesto, LocalDate fecha) {
 		if (id == null || id.isBlank()) throw new IllegalArgumentException("id vacio");
 		if (propuestoPor == null) throw new IllegalArgumentException("propuestoPor vacio");
 		if (venuePropuesto == null) throw new IllegalArgumentException("VenuePropuesto vacio");
@@ -33,14 +33,14 @@ public class SolicitudVenue {
 	}
 	public String getId() {return id;}
 	public Organizador getPropuestoPor() {return propuestoPor;}
-	public Venue getVenuePropuesto() {return venuePropuesto;}
+	public String getVenuePropuesto() {return venuePropuesto;}
 	public LocalDate getFecha() {return fecha;}
 	public EstadoSolicitud getEstado() {return estado;}
 	public String getMotivoRechazo() {return motivoRechazo;}
 	
 	public void setId(String id) {this.id = id;}
 	public void setPropuesto(Organizador propuestoPor) {this.propuestoPor = propuestoPor;}
-	public void setVenuePropuesto(Venue venuePropuesto) {this.venuePropuesto = venuePropuesto;}
+	public void setVenuePropuesto(String venuePropuesto) {this.venuePropuesto = venuePropuesto;}
 	public void setFecha(LocalDate fecha) {this.fecha = fecha;}
 	public void setEstado(EstadoSolicitud estado) {this.estado = estado;}
 

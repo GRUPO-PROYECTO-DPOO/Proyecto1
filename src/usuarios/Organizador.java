@@ -3,6 +3,7 @@ package usuarios;
 import enums.EstadoEvento;
 import enums.Rol;
 import escenariosyventas.*;
+import dtos.*;
 public class Organizador extends Usuario {
 	public Organizador() { }
 	public Organizador(String login, String password, String nombre, String email) {
@@ -15,7 +16,7 @@ public class Organizador extends Usuario {
 	
 	public Localidad configurarLocalidad(String idEvento, CmdLocalidad cmd) {
 		if (cmd == null) throw new IllegalArgumentException("CmdLocalidad nulo");
-		return new Localidad(cmd.getLocalidad(), cmd.getEvento(), cmd.getNombre(), cmd.getPrecioBase(), cmd.IsNumerada(),
+		return new Localidad(cmd.getIdLocalidad(), cmd.getEvento(), cmd.getNombre(), cmd.getPrecioBase(), cmd.IsNumerada(),
 				cmd.getCapacidad());
 	}
 	
@@ -26,7 +27,7 @@ public class Organizador extends Usuario {
 	
 	public SolicitudVenue proponerVenue(CmdVenue cmd) {
 		if (cmd == null) throw new IllegalArgumentException("CmdVenue nulo");
-		return new SolicitudVenue(cmd.getidSolicitud(), this, cmd.getNombrePropuesto(), cmd.getFecha());
+		return new SolicitudVenue(cmd.getIdSolicitud(), this, cmd.getNombrePropuesto(), cmd.getFecha());
 	}
 	
 	public void solicitarCancelacionEvento(String idEvento) {
