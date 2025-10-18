@@ -2,7 +2,7 @@ package tiquetes;
 
 import java.util.List;
 
-import clientes.Cliente;
+import usuarios.Cliente;
 
 public class PaqueteDeluxe {
 

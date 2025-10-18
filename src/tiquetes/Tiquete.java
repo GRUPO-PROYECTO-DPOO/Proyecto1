@@ -2,9 +2,9 @@ package tiquetes;
 
 import java.time.LocalDateTime;
 
-import clientes.Cliente;
-import evento.Evento;
-import evento.Localidad;
+import usuarios.Cliente;
+import escenariosyventas.Evento;
+import escenariosyventas.Localidad;
 
 public abstract class Tiquete {
 
@@ -122,6 +122,7 @@ public abstract class Tiquete {
 			if (ahora.isAfter(evento.getFechaHora()))
 				return false;
 		}
+		return false;
 
 	}
 

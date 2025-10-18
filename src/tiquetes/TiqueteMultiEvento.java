@@ -2,9 +2,9 @@ package tiquetes;
 
 import java.util.List;
 
-import clientes.Cliente;
-import evento.Evento;
-import evento.Localidad;
+import usuarios.Cliente;
+import escenariosyventas.Evento;
+import escenariosyventas.Localidad;
 
 public class TiqueteMultiEvento {
 
