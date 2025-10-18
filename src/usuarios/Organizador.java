@@ -1,8 +1,9 @@
 package usuarios;
 
-import enums.EstadoEvento;
 import enums.Rol;
 import escenariosyventas.*;
+import reportesyfiltros.EstadoFinanciero;
+import reportesyfiltros.FiltroFinanzas;
 import dtos.*;
 public class Organizador extends Usuario {
 	public Organizador() { }
@@ -34,9 +35,9 @@ public class Organizador extends Usuario {
 		if (idEvento == null || idEvento.isBlank()) throw new IllegalArgumentException("idEvento vacio");
 	}
 	
-	public EstadoFinanciero revisarFinanzas(FiltroFinzanzas filtro) {
+	public EstadoFinanciero revisarFinanzas(FiltroFinanzas filtro) {
 		if (filtro == null) throw new IllegalArgumentException("FiltroFinanzas nulo");
-		return new EstadoFinanciero()
+		return new EstadoFinanciero();
 	}
 
 }

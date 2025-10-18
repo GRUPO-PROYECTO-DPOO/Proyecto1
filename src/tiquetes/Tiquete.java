@@ -2,154 +2,63 @@ package tiquetes;
 
 import java.time.LocalDateTime;
 
+import enums.EstadoTiquete;
 import usuarios.Cliente;
 import escenariosyventas.Evento;
 import escenariosyventas.Localidad;
 
 public abstract class Tiquete {
 
-	private String id;
+	protected String id;
 
-	private Evento evento;
+	protected Evento evento;
 
-	private Localidad localidad;
+	protected Localidad localidad;
 
-	private Cliente dueno;
+	protected Cliente dueno;
 
-	private double precioBase;
+	protected double precioBase;
 
-	private double precioPagado;
+	protected double precioPagado;
 
-	private double cuotaEmisionFija;
+	protected double cuotaEmisionFija;
 
-	private String estado;
+	protected EstadoTiquete estado = EstadoTiquete.EMITIDO;
 
-	private int idPaquete;
+	protected Paquete paquete;
 	
-	//contemplar añadir tipo de tiquete para diferenciar facilmente entre simple, numerado, multiple y multi evento
 	
-	public Tiquete(String id, Evento evento, Localidad localidad, Cliente dueno, double precioBase, double precioPagado,
-			double cuotaEmisionFija, String estado, int idPaquete) {
+	protected Tiquete(String id, Evento evento, Localidad localidad, Cliente dueno, double precioBase, double precioPagado,
+			double cuotaEmisionFija, EstadoTiquete estado, Paquete paquete) {
+		
+        if (evento == null) throw new IllegalArgumentException("evento nulo");
+        if (localidad == null) throw new IllegalArgumentException("localidad nula");
+        if (dueno == null) throw new IllegalArgumentException("dueño nulo");
+        if (precioBase < 0 || precioPagado < 0 || cuotaEmisionFija < 0) throw new IllegalArgumentException("precios");
+        this.id = id;
+        this.evento = evento; 
+        this.localidad = localidad; 
+        this.dueno = dueno;
+        this.precioBase = precioBase; 
+        this.precioPagado = precioPagado; 
+        this.cuotaEmisionFija = cuotaEmisionFija;
+        if (estado != null) this.estado = estado;
+        this.paquete = paquete;
+    }
+	
+    public boolean esVencido(LocalDateTime ahora) {
+        if (evento == null || evento.getFechaHora() == null || ahora == null) return false;
+        return ahora.isAfter(evento.getFechaHora());
+    }
+    public void marcarTransferido(Cliente nuevoDueño) {this.dueno = nuevoDueño; this.estado = EstadoTiquete.TRANSFERIDO;}
+   
+    public void marcarReembolsado() {this.estado = EstadoTiquete.REEMBOLSADO;}
+    public Paquete getPaquete() {return paquete;}
 
-		this.id = id;
-		this.evento = evento;
-		this.localidad = localidad;
-		this.dueno = dueno;
-		this.precioBase = precioBase;
-		this.precioPagado = precioPagado;
-		this.cuotaEmisionFija = cuotaEmisionFija;
-		this.estado = estado;
-		this.idPaquete = idPaquete;
+    public double montoReembolsoporAdmin() {return Math.max(0.0, precioPagado - cuotaEmisionFija);}
+    public double montoReembolsoPorOrganizador() {return Math.max(0.0, precioBase);}
 
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public Evento getEvento() {
-		return evento;
-	}
-
-	public void setEvento(Evento evento) {
-		this.evento = evento;
-	}
-
-	public Localidad getLocalidad() {
-		return localidad;
-	}
-
-	public void setLocalidad(Localidad localidad) {
-		this.localidad = localidad;
-	}
-
-	public Cliente getDueno() {
-		return dueno;
-	}
-
-	public void setDueno(Cliente dueno) {
-		this.dueno = dueno;
-	}
-
-	public double getPrecioBase() {
-		return precioBase;
-	}
-
-	public void setPrecioBase(double precioBase) {
-		this.precioBase = precioBase;
-	}
-
-	public double getPrecioPagado() {
-		return precioPagado;
-	}
-
-	public void setPrecioPagado(double precioPagado) {
-		this.precioPagado = precioPagado;
-	}
-
-	public double getCuotaEmisionFija() {
-		return cuotaEmisionFija;
-	}
-
-	public void setCuotaEmisionFija(double cuotaEmisionFija) {
-		this.cuotaEmisionFija = cuotaEmisionFija;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
-
-	public int getIdPaquete() {
-		return idPaquete;
-	}
-
-	public void setIdPaquete(int idPaquete) {
-		this.idPaquete = idPaquete;
-	}
-
-	public boolean esVencido(LocalDateTime ahora) {
-		if (this.estado == "VENCIDO") {
-			return true;
-		} else {
-			if (ahora.isAfter(evento.getFechaHora()))
-				return false;
-		}
-		return false;
-
-	}
-
-	public void marcarTransferido(Cliente nuevoDueno) {
-		if (this.dueno != nuevoDueno) {
-			this.estado = "TRANSFERIDO";
-		}
-	}
-
-	public void marcarReembolsado() {
-		this.estado = "REEMBOLSADO";
-	}
-
-	public boolean perteneceAPaquete(int newIdPaquete) {
-		if (this.idPaquete == newIdPaquete) {
-			return true;
-		} else {
-			return false;
-		}
-
-	}
-
-	public double montoReembolsoPorAdmin() {
-		return precioPagado - cuotaEmisionFija;
-	}
-
-	public double montoReembolsoPorOrganizador() {
-		return precioBase;
-	}
+    public EstadoTiquete getEstado() {return estado;}
+    public Evento getEvento() {return evento;}
+    public Cliente getDueño() {return dueno;}
 }

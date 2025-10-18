@@ -3,25 +3,21 @@ package tiquetes;
 import usuarios.Cliente;
 import escenariosyventas.Evento;
 import escenariosyventas.Localidad;
+import enums.*;
 
 public class TiqueteNumerado extends Tiquete {
 
-	private int numeroAsiento;
+	private String asiento;
+
+	;
 
 	public TiqueteNumerado(String id, Evento evento, Localidad localidad, Cliente dueno, double precioBase,
-			double precioPagado, double cuotaEmisionFija, String estado, int idPaquete, int numeroAsiento) {
+			double precioPagado, double cuotaEmisionFija, EstadoTiquete estado, Paquete paquete, String asiento) 
+	{		super(id, evento, localidad, dueno, precioBase, precioPagado, cuotaEmisionFija, estado, paquete);
 
-		super(id, evento, localidad, dueno, precioBase, precioPagado, cuotaEmisionFija, estado, idPaquete);
-
-		this.numeroAsiento = numeroAsiento;
+        if (asiento == null || asiento.isBlank()) throw new IllegalArgumentException("asiento");
+        this.asiento = asiento;
 	}
 
-	public int getNumeroAsiento() {
-		return numeroAsiento;
-	}
-
-	public void setNumeroAsiento(int numeroAsiento) {
-		this.numeroAsiento = numeroAsiento;
-	}
-
+    public String getAsiento() { return asiento; }
 }

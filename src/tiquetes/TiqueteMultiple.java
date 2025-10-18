@@ -1,12 +1,14 @@
 package tiquetes;
 
 import java.util.List;
+import java.util.Objects;
 
+import enums.EstadoTiquete;
 import usuarios.Cliente;
 import escenariosyventas.Evento;
 import escenariosyventas.Localidad;
 
-public class TiqueteMultiple {
+public class TiqueteMultiple implements Paquete {
 
 	private String id;
 	private Evento evento;
@@ -15,80 +17,48 @@ public class TiqueteMultiple {
 	private double precioPaquete;
 	private Cliente dueno;
 
-	public TiqueteMultiple(String id, Evento evento, Localidad localidad, double precioPaquete, Cliente dueno, List<Tiquete> tiquetes) {
+	public TiqueteMultiple(String id, Evento evento, Localidad localidad, List<Tiquete> tiquetes, double precioPaquete, Cliente dueno) {
+		
+        if (id == null || id.isBlank()) throw new IllegalArgumentException("id nulo");
+        if (evento == null) throw new IllegalArgumentException("evento nulo");
+        if (localidad == null) throw new IllegalArgumentException("localidad nula");
+        if (tiquetes == null || tiquetes.isEmpty()) throw new IllegalArgumentException("tiquetes vacio");
+        if (precioPaquete < 0) throw new IllegalArgumentException("precioPaquete no puede ser < 0");
+        if (dueno == null) throw new IllegalArgumentException("dueño nulo");
 		
 		this.id = id;
-		this.precioPaquete = precioPaquete;
-		this.dueno = dueno;
-		this.tiquetes = tiquetes;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public Evento getEvento() {
-		return evento;
-	}
-
-	public void setEvento(Evento evento) {
 		this.evento = evento;
-	}
-
-	public Localidad getLocalidad() {
-		return localidad;
-	}
-
-	public void setLocalidad(Localidad localidad) {
 		this.localidad = localidad;
-	}
-
-	public List<Tiquete> getTiquetes() {
-		return tiquetes;
-	}
-
-	public void setTiquetes(List<Tiquete> tiquetes) {
 		this.tiquetes = tiquetes;
-	}
-
-	public double getPrecioPaquete() {
-		return precioPaquete;
-	}
-
-	public void setPrecioPaquete(double precioPaquete) {
 		this.precioPaquete = precioPaquete;
-	}
-
-	public Cliente getDueno() {
-		return dueno;
-	}
-
-	public void setDueno(Cliente dueno) {
 		this.dueno = dueno;
+		
+		for (Tiquete t: tiquetes) if (t != null) t.paquete = this;
 	}
 
-	public void transferirTiquete(String idTiquete, String loginEmisor, String passEmisor, String loginReceptor) {
-		//necesitamos lista o mapa de tiquetes/ paquetes para el cliente -> el mapa funcione con el id como llave y el valor seria toda la informacion del tiquete
-	}
+    public void transferirTiquete(String idTiquete, String loginEmisor, String passEmisor, String loginReceptor) {
+        if (dueno == null || !Objects.equals(dueno.getLogin(), loginEmisor) || !dueno.autenticar(passEmisor))
+            throw new IllegalStateException("Credenciales emisor inválidas");
+        if (tieneTiqueteVencidoOTransferido())
+            throw new IllegalStateException("Paquete con piezas vencidas/transferidas");
+        Tiquete t = tiquetes.stream().filter(x -> Objects.equals(x.id, idTiquete))
+                .findFirst().orElseThrow(() -> new IllegalArgumentException("No pertenece al paquete"));
+        t.estado = EstadoTiquete.TRANSFERIDO;
+    }
 
-	public void transferirPaquete(String loginEmisor, String passEmisor, String loginReceptor) {
-		//necesitamos lista o mapa de tiquetes/ paquetes para el cliente -> el mapa funcione con el id como llave y el valor seria toda la informacion del paquete
-	}
+    public void transferirPaquete(String loginEmisor, String passEmisor, String loginReceptor) {
+        if (dueno == null || !Objects.equals(dueno.getLogin(), loginEmisor) || !dueno.autenticar(passEmisor))
+            throw new IllegalStateException("Credenciales emisor inválidas");
+        if (tieneTiqueteVencidoOTransferido())
+            throw new IllegalStateException("Paquete con piezas vencidas/transferidas");
+        for (Tiquete t : tiquetes) t.estado = EstadoTiquete.TRANSFERIDO;
+    }
 
-	public boolean tieneTiqueteVencidoOTransferido() {
+    public boolean tieneTiqueteVencidoOTransferido() {
+        return tiquetes != null && tiquetes.stream()
+                .anyMatch(t -> t.getEstado() == EstadoTiquete.VENCIDO || t.getEstado() == EstadoTiquete.TRANSFERIDO);
+    }
 
-		for (Tiquete t : tiquetes) {
-			String estado = t.getEstado();
-			if (estado.equals("VENCIDO") || estado.equals("TRANSFERIDO")) {
-				return true;
-			}
-		}
-		return false;
-
-	}
-
+    @Override public String getId() { return id; }
+    @Override public java.util.List<Tiquete> getTiquetes() { return tiquetes; }
 }

@@ -1,6 +1,8 @@
 package usuarios;
 
 import enums.*;
+import reportesyfiltros.FiltroGanancias;
+import reportesyfiltros.GananciasGenerales;
 
 public class Administrador extends Usuario {
 	public Administrador() { }
