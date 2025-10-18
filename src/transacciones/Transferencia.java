@@ -3,7 +3,7 @@ package transacciones;
 import java.time.LocalDate;
 import java.util.List;
 
-import clientes.Cliente;
+import usuarios.Cliente;
 import tiquetes.Tiquete;
 
 public class Transferencia {
