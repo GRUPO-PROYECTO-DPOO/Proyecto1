@@ -8,7 +8,7 @@ import escenariosyventas.*;
 public interface VenueService {
 	SolicitudVenue proponerVenue(CmdVenue cmd);
 	void aprobarSolicitud(String idSolicitud);
-	void rechazaSolicitud(String idSolicitud, String motivo);
+	void rechazarSolicitud(String idSolicitud, String motivo);
 	List<Venue> listarVenues();
 	
 	

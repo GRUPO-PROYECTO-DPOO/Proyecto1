@@ -1,5 +1,4 @@
-package dinero;
-import usuarios.*;
+package usuarios;
 public class SaldoVirtual {
 	private Usuario usuario;
 	private double saldo;

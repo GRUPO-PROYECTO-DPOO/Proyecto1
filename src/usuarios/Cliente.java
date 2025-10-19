@@ -1,5 +1,5 @@
 package usuarios;
-import dinero.SaldoVirtual;
+
 import enums.Rol;
 
 public class Cliente extends Usuario{
