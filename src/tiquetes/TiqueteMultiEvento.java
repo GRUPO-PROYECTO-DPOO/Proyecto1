@@ -37,6 +37,8 @@ public class TiqueteMultiEvento {
         if (dueno == null || !Objects.equals(dueno.getLogin(), loginEmisor) || !dueno.autenticar(passEmisor))
             throw new IllegalStateException("Credenciales emisor inválidas");
     }
-
+    
+    public String getId() {return id;}
+    public double getPrecioPaquete() {return precioPaquete;}
     public boolean tieneTiqueteVencidoOTransferido() { return false; }
-}
+}	

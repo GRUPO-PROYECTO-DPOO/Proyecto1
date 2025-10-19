@@ -82,14 +82,15 @@ public class Localidad {
 		ofertas.add(oferta);
 	}
 	
-    public String getId() { return id; }
-    public Evento getEvento() { return evento; }
-    public boolean isNumerada() { return numerada; }
-    public int getCapacidad() { return capacidad; }
-    public void setId(String id) { this.id = id; }
-    public void setEvento(Evento evento) { this.evento = evento; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
-    public void setPrecioBase(double precioBase) { this.precioBase = precioBase; }
-    public void setNumerada(boolean numerada) { this.numerada = numerada; }
-    public void setCapacidad(int capacidad) { this.capacidad = capacidad; }
+    public String getId() {return id;}
+    public String getNombre() {return nombre;}
+    public Evento getEvento() {return evento;}
+    public boolean isNumerada() {return numerada;}
+    public int getCapacidad() {return capacidad;}
+    public void setId(String id) {this.id = id;}
+    public void setEvento(Evento evento) {this.evento = evento;}
+    public void setNombre(String nombre) {this.nombre = nombre;}
+    public void setPrecioBase(double precioBase) {this.precioBase = precioBase;}
+    public void setNumerada(boolean numerada) {this.numerada = numerada;}
+    public void setCapacidad(int capacidad) {this.capacidad = capacidad;}
 }

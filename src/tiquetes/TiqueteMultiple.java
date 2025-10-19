@@ -59,6 +59,9 @@ public class TiqueteMultiple implements Paquete {
                 .anyMatch(t -> t.getEstado() == EstadoTiquete.VENCIDO || t.getEstado() == EstadoTiquete.TRANSFERIDO);
     }
 
+    public Evento getEvento() {return evento;}
+    public Localidad getLocalidad() {return localidad;}
+    public double getPrecioPaquete() {return precioPaquete;}
     @Override public String getId() { return id; }
     @Override public java.util.List<Tiquete> getTiquetes() { return tiquetes; }
 }

@@ -54,6 +54,11 @@ public class Evento {
 	public void cancelarPorOrganizadorAutorizado() {this.estado = EstadoEvento.CANCELADO;}
 	
 	public String getId() {return id;}
+	public String getNombre() {return nombre;}
+	public TipoEvento getTipo() {return tipo;}
+	public Venue getVenue() {return venue;}
+	public Organizador getOrganizador() {return organizador;}
+	public EstadoEvento getEstado() {return estado;}
 	public LocalDateTime getFechaHora() {return fechaHora;}
 	public List<Localidad> getLocalidades() {return localidades;}
 	
