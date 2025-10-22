@@ -17,4 +17,9 @@ public class CmdCrearEvento {
 	public LocalDateTime getFechaHora() {return fechaHora;}
 	public TipoEvento getTipo() {return tipo;}
 	public Venue getVenue() {return venue;}
+	public void setIdEvento(String idEvento) {this.idEvento = idEvento;}
+	public void setNombre(String nombre) {this.nombre = nombre;}
+	public void setFechaHora(LocalDateTime fechaHora) {this.fechaHora = fechaHora;}
+	public void setTipo(TipoEvento tipo) {this.tipo = tipo;}
+	public void setVenue(Venue venue) {this.venue  = venue;}
 }

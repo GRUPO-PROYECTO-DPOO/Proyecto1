@@ -11,6 +11,10 @@ public class CmdVenue {
 	public String getNombrePropuesto() {return nombrePropuesto;}
 	public LocalDate getFecha() {return fecha;}
 	
+	public void setIdSolicitud(String idSolicitud) {this.idSolicitud = idSolicitud;}
+	public void setNombrePropuesto(String nombrePropuesto) {this.nombrePropuesto = nombrePropuesto;}
+	public void setFecha(LocalDate fecha) {this.fecha = fecha;}
+	
  
  
 }

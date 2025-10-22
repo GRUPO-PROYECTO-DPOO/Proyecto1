@@ -16,4 +16,11 @@ public class CmdLocalidad {
     public double getPrecioBase() {return precioBase;}
     public boolean IsNumerada() {return numerada;}
     public int getCapacidad() {return capacidad;}
+    public void setIdLocalidad(String idLocalidad) {this.idLocalidad = idLocalidad;}
+    public void setNombre(String nombre) {this.nombre = nombre;}
+    public void setEvento(Evento evento) {this.evento = evento;}
+    public void setPrecioBase(double precioBase) {this.precioBase = precioBase;}
+    public void setNumerada(boolean numerada) {this.numerada = numerada;}
+    public void setCapacidad(int capacidad) {this.capacidad = capacidad;}
+   
 }
