@@ -55,10 +55,30 @@ public abstract class Tiquete {
     public void marcarReembolsado() {this.estado = EstadoTiquete.REEMBOLSADO;}
     public Paquete getPaquete() {return paquete;}
 
+    public void asignarId(String nuevoId) {
+    	  if (nuevoId == null || nuevoId.isBlank()) throw new IllegalArgumentException("id inválido");
+    	  if (this.id != null && !this.id.isBlank()) throw new IllegalStateException("El tiquete ya tiene id");
+    	  this.id = nuevoId;
+    }
+    
+    public void registrarPago(double monto) {
+    	  if (monto < 0) throw new IllegalArgumentException("monto<0");
+    	  this.precioPagado = monto;
+    }
+    
+    public void aplicarCuotaEmisionFija(double cuota) {
+    	  if (cuota < 0) throw new IllegalArgumentException("cuota<0");
+    	  this.cuotaEmisionFija = cuota;
+    	}
+    
     public double montoReembolsoporAdmin() {return Math.max(0.0, precioPagado - cuotaEmisionFija);}
     public double montoReembolsoPorOrganizador() {return Math.max(0.0, precioBase);}
 
     public EstadoTiquete getEstado() {return estado;}
     public Evento getEvento() {return evento;}
     public Cliente getDueño() {return dueno;}
+    public String getId() {return id;}
+    public double getPrecioBase() {return precioBase;}
+    public double getPrecioPagado() {return precioPagado;}
+    public double getCuotaEmisionFija() {return cuotaEmisionFija;}
 }

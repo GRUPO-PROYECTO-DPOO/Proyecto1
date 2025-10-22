@@ -1,4 +1,4 @@
-package implSimple;
+package implementacion;
 import app.*;
 import run.TiqueteraContext;
 

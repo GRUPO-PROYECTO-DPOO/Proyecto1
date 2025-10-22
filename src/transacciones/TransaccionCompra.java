@@ -16,7 +16,7 @@ public class TransaccionCompra {
 	private List<LineaTransaccion> lineas = new ArrayList<>();
 	private double total;
 	
-	public TransaccionCompra(String id, LocalDate fecha, Cliente cliente, List<LineaTransaccion> lineas, double total) {
+	public TransaccionCompra(String id, LocalDate fecha, Cliente cliente) {
         if (id == null || id.isBlank()) throw new IllegalArgumentException("id");
         if (fecha == null) throw new IllegalArgumentException("fecha");
         if (cliente == null) throw new IllegalArgumentException("cliente");
