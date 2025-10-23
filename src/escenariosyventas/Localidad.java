@@ -87,6 +87,7 @@ public class Localidad {
     public Evento getEvento() {return evento;}
     public boolean isNumerada() {return numerada;}
     public int getCapacidad() {return capacidad;}
+    public double getPrecioBase() {return precioBase;}
     public void setId(String id) {this.id = id;}
     public void setEvento(Evento evento) {this.evento = evento;}
     public void setNombre(String nombre) {this.nombre = nombre;}

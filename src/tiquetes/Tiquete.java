@@ -74,11 +74,12 @@ public abstract class Tiquete {
     public double montoReembolsoporAdmin() {return Math.max(0.0, precioPagado - cuotaEmisionFija);}
     public double montoReembolsoPorOrganizador() {return Math.max(0.0, precioBase);}
 
+    public Localidad getLocalidad() {return this.localidad;}
     public EstadoTiquete getEstado() {return estado;}
     public Evento getEvento() {return evento;}
     public Cliente getDueño() {return dueno;}
     public String getId() {return id;}
     public double getPrecioBase() {return precioBase;}
     public double getPrecioPagado() {return precioPagado;}
-    public double getCuotaEmisionFija() {return cuotaEmisionFija;}
+    public double getCuotaEmisionFija() {return this.cuotaEmisionFija;}
 }

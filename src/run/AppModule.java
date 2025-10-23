@@ -1,7 +1,7 @@
 package run;
 import app.*;
 import implementacion.*;
-import reportesyfiltros.*; 
+ 
 public class AppModule {
 	private final TiqueteraContext ctx = new TiqueteraContext();
 	private final AuthService authService = new AuthServiceSimple(ctx);
@@ -9,13 +9,7 @@ public class AppModule {
 	private final EventoService eventoService = new EventoServiceSimple(ctx);
 	private final CompraService compraService = new CompraServiceSimple(ctx);
 	private final TransferenciaService transferenciaService = new TransferenciaServiceSimple(ctx);
-	private final ReporteService reporteService = (ReporteService) new ReporteService() {
-		public EstadoFinanciero finanzasOrganizador(String loginOrg, FiltroFinanzas f) {
-			return new EstadoFinanciero();}
-		public GananciasGenerales gananciasAdministrador(FiltroGanancias f) {
-			return new GananciasGenerales();}
-		};
-		
+	private final ReporteService reporteService = new ReporteServiceSimple(ctx);		
 		public TiqueteraContext getContext() {return ctx;}
 		public AuthService auth() {return authService;}
 		public VenueService venues() {return venueService;}

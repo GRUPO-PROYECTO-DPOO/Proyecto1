@@ -10,7 +10,7 @@ public class LineaTransaccion {
     public double descuento;
     public double cargoServicio;
     public double cuotaEmisionFija;
-    double subtotal;
+    public double subtotal;
 
     public LineaTransaccion() {}
 
@@ -29,6 +29,15 @@ public class LineaTransaccion {
         this.cargoServicio = cargoServicio; 
         this.cuotaEmisionFija = cuotaEmisionFija;
     }
+    public TipoItem getTipoItem() {return tipoItem;}
+    public String getRefItem() {return refItem;}
+    public int getCantidad() {return cantidad;}
+    public double getPrecioBase() {return precioBase;}
+    public double getDescuento() {return descuento;}
+    public double getCargoServicio() {return cargoServicio;}
+    public double getCuotaEmisionFija() {return cuotaEmisionFija;}
+    
+    
 
     public double calcularSubtotal() {
         double base = Math.max(0.0, precioBase - descuento) * cantidad;

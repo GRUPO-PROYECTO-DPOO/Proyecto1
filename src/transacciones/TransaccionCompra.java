@@ -24,6 +24,12 @@ public class TransaccionCompra {
 		this.fecha = fecha;
 		this.cliente = cliente;
 	}
+	public String getId() {return id;}
+	public LocalDate getFecha() {return fecha;}
+	public Cliente getCliente() {return cliente;}
+	public double getTotal() {return total;}
+	public List<LineaTransaccion> getLineas(){return lineas;}
+
 	
     public void agregarLinea(LineaTransaccion l) {
         if (l == null) throw new IllegalArgumentException("Línea nula");
