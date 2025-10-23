@@ -1,0 +1,36 @@
+Boletamaster Archivo
+Archivo: C:\Users\USER\eclipse-workspace\proyectoBoletaMaster\data\archivo.txt
+----
+
+[PARAMETROS]
+cuotaEmisionFija=3.0
+cargoPorTipo:
+  - MUSICAL = 0.15
+
+[USUARIOS] total=3
+  - admin | AMINISTRADOR | Admin | saldo=0.0
+  - cami | CLIENTE | Camila | saldo=97.0
+  - org1 | ORGANIZADOR | Org Uno | saldo=0.0
+
+[VENUES] total=1
+  - VEN-001 | Teatro Central | aprobado=true
+
+[EVENTOS] total=1
+  - EVT-001 | Concierto Rock | MUSICAL | estado=CANCELADO | 2025-10-29 21:16:22 | venue=Teatro Central
+
+[LOCALIDADES] total=1
+  - EVT-001#LOC-A | Platea | precioBase=50.0 | numerada=true | cap=3
+
+[TIQUETES] total=1
+  - 0b00ea51-ec33-4267-af71-48d7555d9138 | ev=EVT-001 | loc=LOC-A | NUMERADO | asiento=1 | estado=REEMBOLSADO | base=50.0 | pagado=60.5 | cuota=3.0 | dueño=cami
+
+[TRANSACCIONES] total=1
+  - tx=6021123d-4ec1-4b4e-9a73-25a1a5bced13 | fecha=2025-10-22 | cliente=cami | total=60.5
+      * TIQUETE ref=LOC-A | cant=1 | base=50.0 | desc=0.0 | cargoPct=0.15 | cuotaFija=3.0 | subtotal=60.5
+
+[REPORTES]
+GananciasGenerales
+  cargos=7.5 | cuotas=3.0 | totalPlataforma=10.5 | tickets=1
+EstadoFinanciero
+  - org1 | base=50.0 | neto=50.0 | vendidos=1
+
